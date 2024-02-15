@@ -1,4 +1,4 @@
 package org.simplifyinternships.model;
 
-public class User {
+public class Attachment {
 }
