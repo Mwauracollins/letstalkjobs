@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity(name = "education")
+@Entity
+@Table(name = "education")
 public class Education {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "education_id")
     private Integer educationId;
     @Getter

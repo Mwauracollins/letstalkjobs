@@ -10,7 +10,7 @@ public class ContactInformation {
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contact_information_id")
     private Integer id;
     private String email;

@@ -10,7 +10,7 @@ public class Chat {
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "chat_id")
     private Integer chatId;
     @Getter

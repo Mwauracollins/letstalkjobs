@@ -7,9 +7,10 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
+@Table(name = "application")
 public class Application {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "application_id")
     @Getter
     @Setter
@@ -23,6 +24,9 @@ public class Application {
     @Column(name = "application_date")
     private Date applicationDate;
     @ManyToOne
+    @JoinColumn(name = "applicant_id")
     private Applicant applicant;
 
+    public Application() {
+    }
 }

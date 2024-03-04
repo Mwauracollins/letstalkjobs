@@ -1,15 +1,17 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.simplifyinternships.simplifyinternships.Utils.UserRole;
 
+import java.util.ArrayList;
 import java.util.List;
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 public class BaseUser {
     @Getter
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -42,15 +44,27 @@ public class BaseUser {
     private UserRole userRole;
     @Getter
     @Setter
-    @ManyToMany
-    @JoinTable(
-            name = "skills",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "skill_id")
-    )
-    private List<Skills> skills;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserSkill> skills;
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Experience> experience = new ArrayList<>();
+
+//    @Getter
+//    @Setter
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Mentor mentor;
+//    @Getter
+//    @Setter
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Applicant applicant;
     public BaseUser() {
 
+    }
+    public BaseUser(List<UserSkill> skills, List<Experience> experience) {
+        this.skills = skills;
+        this.experience = experience;
     }
 
     public BaseUser(BaseUserBuilder baseUserBuilder) {
@@ -58,6 +72,7 @@ public class BaseUser {
         this.firstName = baseUserBuilder.firstName;
         this.lastName = baseUserBuilder.lastName;
         this.email = baseUserBuilder.email;
+        this.userRole = baseUserBuilder.userRole;
     }
 
     public static class BaseUserBuilder {
@@ -66,6 +81,7 @@ public class BaseUser {
         private String lastName;
         private String email;
         private String password;
+        private UserRole userRole;
 
         public BaseUserBuilder(String email, String password) {
             this.email = email;
@@ -82,6 +98,10 @@ public class BaseUser {
 
         public BaseUserBuilder setLastName(String lastName) {
             this.lastName = lastName;
+            return this;
+        }
+        public BaseUserBuilder setUserRole(UserRole userRole) {
+            this.userRole = userRole;
             return this;
         }
 

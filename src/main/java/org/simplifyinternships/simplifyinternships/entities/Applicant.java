@@ -15,9 +15,9 @@ public class Applicant{
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "applicant_id")
+    private Integer applicantId;
     @Getter
     @Setter
     @OneToOne(cascade = CascadeType.ALL)
@@ -26,13 +26,13 @@ public class Applicant{
     @Getter
     @Setter
     @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL)
+    @Column(name = "applications")
     private List<Application> applications = new ArrayList<>();
 
     public Applicant() {
     }
     public Applicant(ApplicantBuilder applicantBuilder) {
-
-
+        applicantBuilder.setUserRole(UserRole.APPLICANT);
     }
 
 }
