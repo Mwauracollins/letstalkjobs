@@ -3,6 +3,31 @@ package org.simplifyinternships.simplifyinternships.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
+
+import java.util.Date;
+/*
+
+TODO: Later use the userEducation with primary key user_id,
+education_id fk from Educations
+This table records the user and their corresponding education details.
+Plus separate the education to schools like
+EducationDetails:
+▸ education_id (Primary Key)
+▸ school_id (Foreign Key to the Schools table)
+▸ degree
+▸ field_of_study
+▸ start_date
+▸ end_date
+▸ grade
+▸ description
+
+Schools:
+▸ school_id (Primary Key)
+▸ school_name
+▸ location
+▸ website
+ */
 
 @Entity
 @Table(name = "education")
@@ -22,21 +47,21 @@ public class Education {
     @Getter
     @Setter
     @Column(name = "start_year")
-    private String startYear;
+    private Date startYear;
     @Getter
     @Setter
     @Column(name = "end_year")
-    private String endYear;
+    private Date endYear;
     @Getter
     @Setter
     @JoinColumn(name = "user_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private BaseUser user;
 
     public Education() {
     }
 
-    public Education(String major, String university, String startYear, String endYear) {
+    public Education(String major, String university, Date startYear, Date endYear) {
         this.major = major;
         this.university = university;
         this.startYear = startYear;
