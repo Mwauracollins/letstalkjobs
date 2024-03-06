@@ -1,10 +1,16 @@
-package org.simplifyinternships.simplifyinternships.entities;
+package org.simplifyinternships.simplifyinternships.entities.jobentities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.simplifyinternships.simplifyinternships.entities.userentities.Applicant;
 
 import java.util.Date;
+/*
+This entity records the applied jobs ie attachment or internships
+TODO:// Make sure that if an instance of this is made it is either
+    attachment or internship.
+ */
 
 @Entity
 @Table(name = "application")
@@ -18,7 +24,7 @@ public class Application {
     @Getter
     @Setter
     @Column(name = "application_status")
-    private String applicationStatus;
+    private ApplicationStatus applicationStatus;
     @Getter
     @Setter
     @Column(name = "application_date")
@@ -26,6 +32,10 @@ public class Application {
     @ManyToOne
     @JoinColumn(name = "applicant_id")
     private Applicant applicant;
+    @OneToOne
+    private Attachment attachment;
+    @OneToOne
+    private Internship internship;
 
     public Application() {
     }
