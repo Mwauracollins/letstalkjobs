@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
 
 @Entity
 @Table(name = "user_skill")
