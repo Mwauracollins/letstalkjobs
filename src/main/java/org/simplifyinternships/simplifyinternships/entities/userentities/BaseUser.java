@@ -1,9 +1,15 @@
-package org.simplifyinternships.simplifyinternships.entities;
+package org.simplifyinternships.simplifyinternships.entities.userentities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 import org.simplifyinternships.simplifyinternships.Utils.UserRole;
+import org.simplifyinternships.simplifyinternships.entities.Chat;
+import org.simplifyinternships.simplifyinternships.entities.ContactInformation;
+import org.simplifyinternships.simplifyinternships.entities.Experience;
+import org.simplifyinternships.simplifyinternships.entities.postentities.Post;
+import org.simplifyinternships.simplifyinternships.entities.UserSkill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,14 +57,33 @@ public class BaseUser {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Experience> experience = new ArrayList<>();
 
-//    @Getter
-//    @Setter
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private Mentor mentor;
-//    @Getter
-//    @Setter
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private Applicant applicant;
+    @Getter
+    @Setter
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Mentor mentor;
+    @Getter
+    @Setter
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private Applicant applicant;
+    @Getter
+    @Setter
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @JoinColumn(name = "user_id")
+    private ContactInformation contactInformation;
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Post> post;
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "sender")
+    private List<Chat> outgoingChats;
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "receiver")
+    private List<Chat> incomingChats;
+
     public BaseUser() {
 
     }
@@ -67,7 +92,7 @@ public class BaseUser {
         this.experience = experience;
     }
 
-    public BaseUser(BaseUserBuilder baseUserBuilder) {
+    public BaseUser(@NotNull BaseUserBuilder baseUserBuilder) {
         this.username = baseUserBuilder.username;
         this.firstName = baseUserBuilder.firstName;
         this.lastName = baseUserBuilder.lastName;
