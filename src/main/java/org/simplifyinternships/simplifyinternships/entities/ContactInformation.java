@@ -21,7 +21,7 @@ public class ContactInformation {
     private Integer contactInformationId;
     @Getter
     @Setter
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
     @Getter
     @Setter
@@ -29,15 +29,15 @@ public class ContactInformation {
     private Boolean email_visibility;
     @Getter
     @Setter
-    @Column(name = "phone_number")
-    private String phone_number;
+    @Column(name = "phone_number", unique = true)
+    private String phoneNumber;
     @Getter
     @Setter
     @Column(name = "phone_number_visibility")
     private Boolean phone_number_visibility;
     @Getter
     @Setter
-    @Column(name = "website")
+    @Column(name = "website", unique = true)
     private String website;
     @Getter
     @Setter
