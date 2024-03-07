@@ -33,9 +33,7 @@ public class Application {
     @JoinColumn(name = "applicant_id")
     private Applicant applicant;
     @OneToOne
-    private Attachment attachment;
-    @OneToOne
-    private Internship internship;
+    private JobOpportunity jobOpportunity;
 
     public Application() {
     }
