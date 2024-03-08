@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.simplifyinternships.simplifyinternships.entities.jobentities.Attachment;
 import org.simplifyinternships.simplifyinternships.entities.jobentities.Internship;
+import org.simplifyinternships.simplifyinternships.entities.jobentities.JobOpportunity;
 
 import java.util.List;
 
@@ -19,21 +20,21 @@ public class Company {
     private Integer companyId;
     @Getter
     @Setter
+    @Column(name = "name", unique = true)
+    private String companyName;
+    @Getter
+    @Setter
     @Column(name = "description")
     private String companyDescription;
     @Getter
     @Setter
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "company")
-    @JoinColumn(name = "company_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_information_id")
     private ContactInformation contactInformation;
     @Getter
     @Setter
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Internship> internships;
-    @Getter
-    @Setter
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Attachment> attachment;
+    private List<JobOpportunity> jobOpportunity;
 
     public Company(){
 

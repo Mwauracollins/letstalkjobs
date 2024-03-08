@@ -1,8 +1,9 @@
-package org.simplifyinternships.simplifyinternships.entities;
+package org.simplifyinternships.simplifyinternships.entities.postentities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
 
 @Entity
 @Table(name = "posts")

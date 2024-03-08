@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+/*
+This entity record the chat meta data like is it viewed.
+ */
 
 @Entity
 @Table(name = "notification")
@@ -25,8 +28,15 @@ public class Notification {
     private Boolean isDelivered;
     @Getter
     @Setter
-    @Column(name = "notification_date")
-    private Date notificationDate;
+    @Column(name = "send_date")
+    private Date sendDate;
+    @Getter
+    @Setter
+    @OneToOne
+    @JoinColumn(name = "chat_id")
+    private Chat chat;
+
+
 
     public Notification() {
     }
