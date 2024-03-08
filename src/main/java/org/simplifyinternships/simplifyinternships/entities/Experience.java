@@ -1,9 +1,9 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
 
 import java.util.Date;
 
@@ -32,6 +32,11 @@ public class Experience {
     @Column(name = "end_date")
     @Temporal(value = TemporalType.DATE)
     private Date endDate;
+    @Getter
+    @Setter
+    @Column(name = "is_current_role")
+    private Boolean isCurrentRole;
+
     @Getter
     @Setter
     @ManyToOne()//TODO: Add cascade and fetch type
