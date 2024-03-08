@@ -1,13 +1,10 @@
-package org.simplifyinternships.simplifyinternships.entities;
+package org.simplifyinternships.simplifyinternships.entities.userentities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.simplifyinternships.simplifyinternships.Utils.UserRole;
-import org.simplifyinternships.simplifyinternships.entities.BaseUser.MentorBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser.MentorBuilder;
 
 @Entity
 @Table(name = "mentor")
@@ -24,8 +21,8 @@ public class Mentor{
     private Boolean isVerified;
     @Getter
     @Setter
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true)
     private BaseUser user;
     public Mentor() {
     }
