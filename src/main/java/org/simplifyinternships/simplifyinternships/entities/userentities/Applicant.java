@@ -1,10 +1,11 @@
-package org.simplifyinternships.simplifyinternships.entities;
+package org.simplifyinternships.simplifyinternships.entities.userentities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.simplifyinternships.simplifyinternships.Utils.UserRole;
-import org.simplifyinternships.simplifyinternships.entities.BaseUser.ApplicantBuilder;
+import org.simplifyinternships.simplifyinternships.entities.jobentities.Application;
+import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser.ApplicantBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +18,15 @@ public class Applicant{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "applicant_id")
-    private Integer applicantId;
+    private Integer userId;
     @Getter
     @Setter
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true)
     private BaseUser user;
     @Getter
     @Setter
     @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL)
-    @Column(name = "applications")
     private List<Application> applications = new ArrayList<>();
 
     public Applicant() {
@@ -34,5 +34,7 @@ public class Applicant{
     public Applicant(ApplicantBuilder applicantBuilder) {
         applicantBuilder.setUserRole(UserRole.APPLICANT);
     }
-
+    public BaseUser getUser(){
+        return user;
+    }
 }
