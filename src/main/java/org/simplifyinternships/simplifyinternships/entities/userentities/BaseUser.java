@@ -68,8 +68,8 @@ public class BaseUser {
     private Applicant applicant;
     @Getter
     @Setter
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-    @JoinColumn(name = "user_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_information_id")
     private ContactInformation contactInformation;
     @Getter
     @Setter
