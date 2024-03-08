@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration - University Career Portal</title>
+  <link rel="stylesheet" href="">
+  <script src="/js/student.js"></script>
+</head>
+<body>
+  <h1>Student Registration</h1>
+  <form action="" method="POST" id="registrationForm">
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name" required><br><br>
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="student_id">Student ID:</label>
+    <input type="text" id="student_id" name="student_id" required><br><br>
+
+    <label for="major">Major:</label>
+    <input type="text" id="major" name="major" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+
+    <button type="submit" onclick="registerStudent()">Register</button>
+  </form>
+
+  <p>By registering, you agree to the <a href="#">Terms and Conditions</a>.</p>
+  <button id="homePage" onclick="homePage()">Home</button>
+</body>
+</html>
