@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Application Form</title>
+  <link rel="stylesheet" href="">
+  <script src="/js/applications.js"></script>
+</head>
+<body>
+  <h1>Student Application Form</h1>
+  <form id="applicationForm">
+    <label for="studentName">Student Name:</label><br>
+    <input type="text" id="studentName" name="studentName" required><br><br>
+    
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+    
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone" required><br><br>
+    
+    <label for="cv">CV Submission:</label><br>
+    <input type="file" id="cv" name="cv" required><br><br>
+
+    <label for="internship">Choose the internship you seek:</label>
+    <select name="internship">
+        <option value="art">Art Internships</option>
+        <option value="business">Business Internships</option>
+        <option value="business_management">Business Management Internships</option>
+        <option value="design">Design Internships</option>
+        <option value="engineering">Engineering Internships</option>
+        <option value="fashion">Fashion Internships</option>
+        <option value="finance">Finance Internships</option>
+        <option value="law">Law Internships</option>
+        <option value="medical">Medical Internships</option>
+        <option value="sales">Sales Internships</option>
+    </select><br><br>
+    
+    <button type="submit">Submit Application</button><br><br>
+
+    <button type="button" onclick="studentPage()">Student Page</button>
+  </form>
+  <p id="responseMessage" style="display: none;"></p>
+</body>
+</html>
