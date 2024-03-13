@@ -1,0 +1,60 @@
+body{
+    background-image: url(/static/picturess/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+h1{
+    color: orange;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+nav{
+
+    width: 18cm;
+    float: right;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    font-size: 20px;
+}
+nav a{
+color: white;
+list-style: none;
+margin-left: 62px;
+margin-top: 27px;
+text-decoration: none;
+font-family: Arial;
+font-weight: bold;
+transition: 0.4s ease-in-out;
+}
+nav a:hover{
+    color: orange;
+}
+main{
+    color:white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#head1{
+    text-align: center;
+}
+#par1{
+    text-align: center;
+}
+button {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Add some padding */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Indicate it's clickable */
+    transition: all 0.4s ease; /* Smooth hover transitions */
+  }
+  
+  button:hover {
+    background-color: lightgreen; /* Darker blue on hover */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Add a subtle shadow */
+  }
+  

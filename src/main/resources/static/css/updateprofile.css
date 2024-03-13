@@ -1,0 +1,20 @@
+body{
+    background-color: lavender;
+    background-position: center;
+    background-attachment: fixed ;
+    background-size: cover;
+    text-align: center;
+    display: inline;
+
+}
+input{
+    box-sizing: border-box;
+}
+button:hover{
+    color: blue;
+}
+button{
+    background-color: cadetblue;
+    font-size: medium;
+}
+

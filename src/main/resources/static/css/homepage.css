@@ -1,0 +1,57 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 100px;
+    align-content:center;
+   text-align: center; 
+   border: 20px;
+   background-size: cover;
+}
+
+button{
+    background-color: gainsboro;
+    border-radius: 10px;
+    width: 2.5cm;
+    height: 30px;
+    font-size: large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: 0cap
+}
+
+input{
+    height: 25px;
+    width: 250px;
+    border-radius: 5px;
+    border: 0cap;
+
+}
+
+.sect1{
+    display: flex;
+    flex-direction: row;
+    height: 8cm;
+    gap: 20px;
+
+}
+
+.logleft{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: medium;
+    background-color: darkcyan;
+    width: 49%;
+    border-radius: 0 30px;
+    padding: 70px;
+
+}
+
+.logright{
+    padding: 70px;
+    background-color: cadetblue;
+    border-radius: 30px 0;
+    width: 49%;
+    }
+
+.sect2{
+    background-color: cornflowerblue;
+    border-radius: 30px;
+    
+}

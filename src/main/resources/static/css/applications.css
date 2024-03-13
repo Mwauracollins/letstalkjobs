@@ -1,0 +1,32 @@
+body{
+    background-image: url(/templates/pics/app2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: large;
+    font-family: Arial;
+    
+   
+    
+}
+button{
+    font: bold;
+    color: blue;
+   
+
+}
+button:hover{
+    color: red;
+}
+input{
+    box-sizing: border-box;
+    padding: 5px 0;
+    width: 35%;
+}
+h1{
+    text-align: left;
+}
+form{
+   margin-left: 25%;
+   margin-top: 5%;
+}
+
