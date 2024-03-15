@@ -38,9 +38,9 @@ public class SecurityConfig {
     // Whitelist of URLS that are allowed without authentication
     private static final String[] WHITE_LIST_URL = {
             "/",
-            "/contact",
-            "/about",
-            "/auth",
+            "/contact/**",
+            "/about/**",
+            "/auth/**",
     };
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity httpSecurity) throws Exception {

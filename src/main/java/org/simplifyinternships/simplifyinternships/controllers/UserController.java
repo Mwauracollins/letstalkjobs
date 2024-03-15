@@ -1,32 +1,32 @@
 package org.simplifyinternships.simplifyinternships.controllers;
 
+import org.simplifyinternships.simplifyinternships.auth.ChangePasswordRequest;
 import org.simplifyinternships.simplifyinternships.dto.ApplicantCreationRequest;
 import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
+import org.simplifyinternships.simplifyinternships.services.BaseUserService;
 import org.simplifyinternships.simplifyinternships.services.UserService;
+import org.simplifyinternships.simplifyinternships.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    @GetMapping("/")
-    public String helloUser(){
-        return "Hello user";
-    }
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
-    @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
-    @PostMapping("/createApplicant")
-    public BaseUser createUser(@RequestBody ApplicantCreationRequest request){
-        return userService.createUser(
-                request.getUsername(),
-                request.getFirstName(),
-                request.getLastName(),
-                request.getEmail(),
-                request.getPassword()
-        );
+    @PatchMapping
+    public ResponseEntity<?> changePassword(
+            @RequestBody ChangePasswordRequest request,
+            Principal connectedUser
+            ){
+        userService.changePassword(request, connectedUser);
+        return ResponseEntity.ok().build();
     }
 }
