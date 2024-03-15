@@ -3,9 +3,7 @@ package org.simplifyinternships.simplifyinternships.entities.userentities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.simplifyinternships.simplifyinternships.Utils.UserRole;
 import org.simplifyinternships.simplifyinternships.entities.jobentities.Application;
-import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser.ApplicantBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +28,5 @@ public class Applicant{
     private List<Application> applications = new ArrayList<>();
 
     public Applicant() {
-    }
-    public Applicant(ApplicantBuilder applicantBuilder) {
-        applicantBuilder.setUserRole(UserRole.APPLICANT);
-    }
-    public BaseUser getUser(){
-        return user;
     }
 }
