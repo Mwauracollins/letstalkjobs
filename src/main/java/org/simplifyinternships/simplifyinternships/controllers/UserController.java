@@ -1,15 +1,12 @@
 package org.simplifyinternships.simplifyinternships.controllers;
 
 import org.simplifyinternships.simplifyinternships.auth.ChangePasswordRequest;
-import org.simplifyinternships.simplifyinternships.dto.ApplicantCreationRequest;
-import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
-import org.simplifyinternships.simplifyinternships.services.BaseUserService;
-import org.simplifyinternships.simplifyinternships.services.UserService;
 import org.simplifyinternships.simplifyinternships.services.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
