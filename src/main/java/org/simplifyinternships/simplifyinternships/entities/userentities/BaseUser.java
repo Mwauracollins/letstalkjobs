@@ -10,12 +10,15 @@ import org.simplifyinternships.simplifyinternships.entities.ContactInformation;
 import org.simplifyinternships.simplifyinternships.entities.Experience;
 import org.simplifyinternships.simplifyinternships.entities.postentities.Post;
 import org.simplifyinternships.simplifyinternships.entities.UserSkill;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 @Entity
 @Table(name = "users")
-public class BaseUser {
+public class BaseUser implements UserDetails {
     @Getter
     @Setter
     @Id
@@ -24,29 +27,28 @@ public class BaseUser {
     private Integer userId;
     @Getter
     @Setter
-    @Column(name = "username")
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
     @Getter
     @Setter
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
-
     @Getter
     @Setter
     @Column(name = "first_name")
     private String firstName;
-
     @Getter
     @Setter
     @Column(name = "last_name")
     private String lastName;
     @Getter
     @Setter
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
     @Getter
     @Setter
     @Column(name = "userRole")
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
     @Getter
     @Setter
@@ -56,7 +58,6 @@ public class BaseUser {
     @Setter
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Experience> experience = new ArrayList<>();
-
     @Getter
     @Setter
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -98,6 +99,32 @@ public class BaseUser {
         this.lastName = baseUserBuilder.lastName;
         this.email = baseUserBuilder.email;
         this.userRole = baseUserBuilder.userRole;
+        this.password = baseUserBuilder.password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return userRole.getAuthorities();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public static class BaseUserBuilder {
@@ -112,10 +139,12 @@ public class BaseUser {
             this.email = email;
             this.password = password;
         }
+
         public BaseUserBuilder setUsername(String username) {
             this.username = username;
             return this;
         }
+
         public BaseUserBuilder setFirstName(String firstName) {
             this.firstName = firstName;
             return this;
@@ -125,6 +154,7 @@ public class BaseUser {
             this.lastName = lastName;
             return this;
         }
+
         public BaseUserBuilder setUserRole(UserRole userRole) {
             this.userRole = userRole;
             return this;
@@ -132,23 +162,6 @@ public class BaseUser {
 
         public BaseUser build() {
             return new BaseUser(this);
-        }
-    }
-    public static class MentorBuilder extends BaseUserBuilder{
-        Boolean isVerified;
-
-        public MentorBuilder(String email, String password) {
-            super(email, password);
-        }
-        public MentorBuilder setIsVerified(Boolean isVerified) {
-            this.isVerified = isVerified;
-            return this;
-        }
-    }
-    public static class ApplicantBuilder extends BaseUserBuilder{
-
-        public ApplicantBuilder(String email, String password) {
-            super(email, password);
         }
     }
 }
