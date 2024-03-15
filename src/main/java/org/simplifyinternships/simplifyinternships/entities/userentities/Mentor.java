@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.simplifyinternships.simplifyinternships.Utils.UserRole;
-import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser.MentorBuilder;
 
 @Entity
 @Table(name = "mentor")
@@ -26,7 +25,8 @@ public class Mentor{
     private BaseUser user;
     public Mentor() {
     }
-    public Mentor(MentorBuilder mentorBuilder) {
-        mentorBuilder.setUserRole(UserRole.MENTOR);
+    public Mentor(BaseUser user, Boolean isVerified){
+        this.user = user;
+        this.isVerified = isVerified;
     }
 }
