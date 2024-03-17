@@ -1,0 +1,6 @@
+version: 2.24.6
+services:
+  app:
+    image: simplifyinternships
+    ports:
+      - "8000:8080"
