@@ -46,11 +46,13 @@ public class ContactInformation {
 
     @Getter
     @Setter
-    @OneToOne(mappedBy = "contactInformation")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private BaseUser user;
     @Getter
     @Setter
-    @OneToOne(mappedBy = "contactInformation")
+    @OneToOne
+    @JoinColumn(name = "company_id")
     private Company company;
 
     public ContactInformation(){

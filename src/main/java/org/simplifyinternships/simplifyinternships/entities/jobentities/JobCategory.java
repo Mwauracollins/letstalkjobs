@@ -20,7 +20,7 @@ public class JobCategory {
     private Integer categoryId;
     @Getter
     @Setter
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
     @Getter
     @Setter

@@ -5,11 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.simplifyinternships.simplifyinternships.Utils.UserRole;
-import org.simplifyinternships.simplifyinternships.entities.Chat;
-import org.simplifyinternships.simplifyinternships.entities.ContactInformation;
-import org.simplifyinternships.simplifyinternships.entities.Experience;
+import org.simplifyinternships.simplifyinternships.entities.*;
 import org.simplifyinternships.simplifyinternships.entities.postentities.Post;
-import org.simplifyinternships.simplifyinternships.entities.UserSkill;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -69,8 +66,7 @@ public class BaseUser implements UserDetails {
     private Applicant applicant;
     @Getter
     @Setter
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_information_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private ContactInformation contactInformation;
     @Getter
     @Setter
@@ -84,6 +80,9 @@ public class BaseUser implements UserDetails {
     @Setter
     @OneToMany(mappedBy = "receiver")
     private List<Chat> incomingChats;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
     public BaseUser() {
 

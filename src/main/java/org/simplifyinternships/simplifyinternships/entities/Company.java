@@ -28,8 +28,7 @@ public class Company {
     private String companyDescription;
     @Getter
     @Setter
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_information_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "company")
     private ContactInformation contactInformation;
     @Getter
     @Setter

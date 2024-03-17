@@ -1,6 +1,8 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
@@ -9,6 +11,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "experience")
+@Builder
+@AllArgsConstructor
 public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
