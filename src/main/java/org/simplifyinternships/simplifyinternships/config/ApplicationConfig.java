@@ -1,9 +1,11 @@
 package org.simplifyinternships.simplifyinternships.config;
 
 import lombok.RequiredArgsConstructor;
+import org.simplifyinternships.simplifyinternships.auditing.ApplicationAuditAware;
 import org.simplifyinternships.simplifyinternships.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -34,12 +36,12 @@ public class ApplicationConfig {
         return username -> userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
-    // define a DaoAuthenticationProvider
+    // defines a DaoAuthenticationProvider
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 
-        // Configure the provider with UserDetailsService and PasswordEncoder
+        // Configures the provider with UserDetailsService and PasswordEncoder
         authenticationProvider.setUserDetailsService(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordDecoder());
         return authenticationProvider;
@@ -55,5 +57,9 @@ public class ApplicationConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
+    }
+    @Bean
+    public AuditorAware<Integer> auditorAware(){
+        return new ApplicationAuditAware();
     }
 }

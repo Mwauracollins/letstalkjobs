@@ -6,9 +6,11 @@ import org.simplifyinternships.simplifyinternships.auth.AuthenticationResponse;
 import org.simplifyinternships.simplifyinternships.auth.AuthenticationService;
 import org.simplifyinternships.simplifyinternships.auth.RegisterRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
@@ -16,8 +18,9 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @GetMapping("/register")
-    public String register(){
-        return "Hello";
+    public String register(Model model){
+        model.addAttribute("message", "Welcome to the register page");
+        return "registerstudent";
     }
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
