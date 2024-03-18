@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ExperienceRepository extends JpaRepository<Experience, Integer> {
     @Override
     Optional<Experience> findById(Integer integer);
-    Optional<Experience> findByUser(BaseUser user);
+    List<Experience> findByUser(BaseUser user);
 
     @Override
     List<Experience> findAll();

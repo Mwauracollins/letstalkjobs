@@ -1,6 +1,7 @@
 package org.simplifyinternships.simplifyinternships.controllers.auth;
 
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.simplifyinternships.simplifyinternships.auth.AuthenticationRequest;
 import org.simplifyinternships.simplifyinternships.auth.AuthenticationResponse;
 import org.simplifyinternships.simplifyinternships.auth.AuthenticationService;
@@ -23,7 +24,7 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @GetMapping("/register")
-    public String register(Model model){
+    public String register(@NotNull Model model){
         model.addAttribute("message", "Welcome to the register page");
         return "registerstudent";
     }
@@ -34,8 +35,13 @@ public class AuthenticationController {
 
         return  ResponseEntity.ok(authenticationService.register(request));
     }
+    @GetMapping("/login")
+    public String authenticate(@NotNull Model model){
+        model.addAttribute("message", "Welcome to the register page");
+        return "login";
+    }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
     ){
