@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +24,14 @@ This class provides methods for generating, extracting information from and vali
 @Service
 public class JwtService {
     private static final String SECRET_KEY = "1729beaf3d26e99b80f4f2d17755ed2e04c03935a93d2206c02b3cfe0e02661c";
+    private long jwtExpiration = 1000 * 60 * 60 * 24;
+    private long refreshExpiration = 1000 * 60 * 60 * 24;
 
     //Extract username from jwt toke
     public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
     }
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
+    public <T> T extractClaim(String token, @NotNull Function<Claims, T> claimsResolver){
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
@@ -40,14 +43,7 @@ public class JwtService {
             Map<String, Object> extractClaims,
             UserDetails userDetails
     ){
-        return Jwts
-                .builder()
-                .setClaims(extractClaims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-                .compact();
+        return buildToken(extractClaims, userDetails, jwtExpiration);
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails){
@@ -72,8 +68,26 @@ public class JwtService {
                 .getBody();
     }
 
-    private Key getSignInKey() {
+    private @NotNull Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public String generateRefreshToken(UserDetails userDetails) {
+        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
+    }
+    public String buildToken(
+            Map<String, Object> extraClaims,
+            UserDetails userDetails,
+            long expiration
+    ){
+        return Jwts
+                .builder()
+                .setClaims(extraClaims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 }
