@@ -1,8 +1,7 @@
 package org.simplifyinternships.simplifyinternships.entities.jobentities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.simplifyinternships.simplifyinternships.entities.Company;
 
 import java.util.Date;
@@ -11,8 +10,11 @@ import java.util.Date;
 This entity defines the job. It incorporates all jobs like
 attachments and internships.
  */
+@Builder
 @Entity
 @Table(name = "job_opportunity")
+@NoArgsConstructor
+@AllArgsConstructor
 public class JobOpportunity {
     @Getter
     @Setter
@@ -64,10 +66,5 @@ public class JobOpportunity {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "jobOpportunity")
     private Attachment attachment;
 
-
-
-    public JobOpportunity(){
-
-    }
 
 }

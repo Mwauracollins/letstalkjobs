@@ -13,6 +13,7 @@ public interface ExperienceRepository extends JpaRepository<Experience, Integer>
     @Override
     Optional<Experience> findById(Integer integer);
     List<Experience> findByUser(BaseUser user);
+    Experience findByUserAndCompanyName(BaseUser user, String companyName);
 
     @Override
     List<Experience> findAll();
