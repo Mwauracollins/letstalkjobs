@@ -1,6 +1,15 @@
 package org.simplifyinternships.simplifyinternships.entities.userentities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.CascadeType;
 import lombok.Getter;
 import lombok.Setter;
 import org.simplifyinternships.simplifyinternships.entities.jobentities.Application;

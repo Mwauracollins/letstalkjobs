@@ -1,15 +1,17 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
 
 /*
 Represents the relationship between two users
  */
+@Builder
 @Entity
 @Table(name = "connection")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Connection {
     @Getter
     @Setter
@@ -25,9 +27,9 @@ public class Connection {
     @Setter
     @ManyToOne
     private BaseUser user2;
-
-    public Connection(){
-
-    }
+    @Getter
+    @Setter
+    @Column(name = "is_pending")
+    private Boolean isPending;
 
 }

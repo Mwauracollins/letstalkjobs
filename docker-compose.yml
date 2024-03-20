@@ -1,6 +1,21 @@
 version: 2.24.6
 services:
+  database:
+    image: "mariadb"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=@Ud415zAs@0
+      - MYSQL_DATABASE=simplifyinternships
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=@Ud415zAs@0
   app:
     image: simplifyinternships
     ports:
       - "8000:8080"
+    depends_on:
+      -database
+    environment:
+      - DATABASE_URL=jdbc:mariadb://database:3306/simplifyinternships
+      - DATABASE_USERNAME=simplifyinternships
+      - DATABASE_PASSWORD=@Ud415zAs@0

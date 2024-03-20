@@ -1,6 +1,17 @@
 package org.simplifyinternships.simplifyinternships.entities.userentities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
@@ -80,6 +91,14 @@ public class BaseUser implements UserDetails {
     @Setter
     @OneToMany(mappedBy = "receiver")
     private List<Chat> incomingChats;
+    @Getter
+    @Setter
+    @OneToMany
+    private List<Connection> connectedTo;
+    @Getter
+    @Setter
+    @OneToMany
+    private List<Connection> connections;
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;

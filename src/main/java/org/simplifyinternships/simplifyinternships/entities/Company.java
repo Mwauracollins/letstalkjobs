@@ -1,16 +1,16 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import org.simplifyinternships.simplifyinternships.entities.jobentities.Attachment;
-import org.simplifyinternships.simplifyinternships.entities.jobentities.Internship;
+import lombok.*;
 import org.simplifyinternships.simplifyinternships.entities.jobentities.JobOpportunity;
 
 import java.util.List;
 
+@Builder
 @Entity
 @Table(name = "company")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Company {
     @Getter
     @Setter
@@ -34,10 +34,5 @@ public class Company {
     @Setter
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<JobOpportunity> jobOpportunity;
-
-    public Company(){
-
-    }
-
 
 }
