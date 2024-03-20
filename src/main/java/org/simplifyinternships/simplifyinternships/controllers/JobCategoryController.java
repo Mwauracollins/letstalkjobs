@@ -16,6 +16,10 @@ public class JobCategoryController {
     public JobCategoryController(JobCategoryService jobCategoryService) {
         this.jobCategoryService = jobCategoryService;
     }
+    @GetMapping("/")
+    public String category(){
+        return "Category";
+    }
     @GetMapping
     public List<JobCategory> getAllJobCategories(){
         return jobCategoryService.getAllCategories();

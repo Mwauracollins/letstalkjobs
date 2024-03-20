@@ -1,8 +1,7 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
 
 import java.util.Date;
@@ -31,6 +30,9 @@ Schools:
 
 @Entity
 @Table(name = "education")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,16 +59,5 @@ public class Education {
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private BaseUser user;
-
-    public Education() {
-    }
-
-    public Education(String major, String university, Date startYear, Date endYear) {
-        this.major = major;
-        this.university = university;
-        this.startYear = startYear;
-        this.endYear = endYear;
-    }
-
 
 }

@@ -1,15 +1,23 @@
 package org.simplifyinternships.simplifyinternships.entities.userentities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.simplifyinternships.simplifyinternships.Utils.UserRole;
-import org.simplifyinternships.simplifyinternships.entities.Chat;
-import org.simplifyinternships.simplifyinternships.entities.ContactInformation;
-import org.simplifyinternships.simplifyinternships.entities.Experience;
+import org.simplifyinternships.simplifyinternships.entities.*;
 import org.simplifyinternships.simplifyinternships.entities.postentities.Post;
-import org.simplifyinternships.simplifyinternships.entities.UserSkill;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -69,8 +77,7 @@ public class BaseUser implements UserDetails {
     private Applicant applicant;
     @Getter
     @Setter
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_information_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private ContactInformation contactInformation;
     @Getter
     @Setter
@@ -84,6 +91,17 @@ public class BaseUser implements UserDetails {
     @Setter
     @OneToMany(mappedBy = "receiver")
     private List<Chat> incomingChats;
+    @Getter
+    @Setter
+    @OneToMany
+    private List<Connection> connectedTo;
+    @Getter
+    @Setter
+    @OneToMany
+    private List<Connection> connections;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
     public BaseUser() {
 

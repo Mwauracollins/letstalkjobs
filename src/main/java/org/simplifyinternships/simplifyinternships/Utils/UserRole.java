@@ -13,7 +13,6 @@ import static org.simplifyinternships.simplifyinternships.Utils.Permission.*;
 
 @RequiredArgsConstructor
 public enum UserRole {
-    USER(Collections.emptySet()),
     ADMIN(
             Set.of(
                     ADMIN_READ,
@@ -35,14 +34,10 @@ public enum UserRole {
             )
     ),
     APPLICANT(
-            Set.of(
-
-            )
+            Collections.emptySet()
     ),
     MENTOR(
-            Set.of(
-
-            )
+            Collections.emptySet()
     )
     ;
     @Getter
