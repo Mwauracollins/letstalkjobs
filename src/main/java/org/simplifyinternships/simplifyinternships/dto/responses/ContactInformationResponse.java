@@ -1,0 +1,17 @@
+package org.simplifyinternships.simplifyinternships.dto.responses;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ContactInformationResponse {
+    //TODO: Add more fields
+    private BaseUser user;
+    private String email;
+}
