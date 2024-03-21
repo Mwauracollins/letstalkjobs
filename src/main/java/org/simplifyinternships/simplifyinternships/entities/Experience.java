@@ -1,14 +1,23 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
 
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "experience")
 @Builder
@@ -18,31 +27,19 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "experience_id")
     private Integer experienceId;
-    @Getter
-    @Setter
     @Column(name = "company_name")
     private String companyName;
-    @Getter
-    @Setter
     @Column(name = "position")
     private String position;
-    @Getter
-    @Setter
     @Column(name = "start_date")
     @Temporal(value = TemporalType.DATE)
     private Date startDate;
-    @Getter
-    @Setter
     @Column(name = "end_date")
     @Temporal(value = TemporalType.DATE)
     private Date endDate;
-    @Getter
-    @Setter
     @Column(name = "is_current_role")
     private Boolean isCurrentRole;
 
-    @Getter
-    @Setter
     @ManyToOne()//TODO: Add cascade and fetch type
     @JoinColumn(name = "user_id")
     private BaseUser user;

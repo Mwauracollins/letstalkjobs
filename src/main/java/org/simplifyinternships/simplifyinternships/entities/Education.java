@@ -1,7 +1,18 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.FetchType;
+import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
 
 import java.util.Date;
@@ -28,6 +39,7 @@ Schools:
 ▸ website
  */
 
+@Data
 @Entity
 @Table(name = "education")
 @Builder
@@ -38,24 +50,14 @@ public class Education {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "education_id")
     private Integer educationId;
-    @Getter
-    @Setter
     @Column(name = "major")
     private String major;
-    @Getter
-    @Setter
     @Column(name = "university")
     private String university;
-    @Getter
-    @Setter
     @Column(name = "start_year")
     private Date startYear;
-    @Getter
-    @Setter
     @Column(name = "end_year")
     private Date endYear;
-    @Getter
-    @Setter
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private BaseUser user;

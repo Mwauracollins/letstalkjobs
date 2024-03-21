@@ -1,7 +1,20 @@
 package org.simplifyinternships.simplifyinternships.entities.jobentities;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.simplifyinternships.simplifyinternships.entities.Company;
 
 import java.util.Date;
@@ -10,61 +23,42 @@ import java.util.Date;
 This entity defines the job. It incorporates all jobs like
 attachments and internships.
  */
+@Data
 @Builder
 @Entity
 @Table(name = "job_opportunity")
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobOpportunity {
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "job_id")
     private Integer jobId;
-    @Getter
-    @Setter
     @Column(name = "name")
     private String name;
-    @Getter
-    @Setter
     @Column(name = "date_posted")
     private Date datePosted;
-    @Getter
-    @Setter
     @Column(name = "start_date")
     private Date startDate;
-    @Getter
-    @Setter
     @Column(name = "end_date")
     private Date endDate;
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
-    @Getter
-    @Setter
     @JoinColumn(name = "position_id")
     @ManyToOne
     private Position position;
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "category_id")
     private JobCategory category;
-    @Getter
-    @Setter
     @Column(name = "job_type")
+    @Enumerated(EnumType.STRING)
     private JobType jobType;
-    @Getter
-    @Setter
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "jobOpportunity")
-    private Internship internship;
-    @Getter
-    @Setter
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "jobOpportunity")
+    @OneToOne(mappedBy = "jobOpportunity")
     private Attachment attachment;
+    @OneToOne(mappedBy = "jobOpportunity")
+    private Internship internship;
+
 
 
 }
