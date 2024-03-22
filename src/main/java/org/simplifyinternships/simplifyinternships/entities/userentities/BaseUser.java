@@ -12,8 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 import org.simplifyinternships.simplifyinternships.Utils.UserRole;
 import org.simplifyinternships.simplifyinternships.entities.*;
@@ -24,82 +23,48 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+@Data
 @Entity
 @Table(name = "users")
 public class BaseUser implements UserDetails {
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer userId;
-    @Getter
-    @Setter
     @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @Getter
-    @Setter
     @Column(name = "email", nullable = false, unique = true)
     private String email;
-    @Getter
-    @Setter
     @Column(name = "first_name")
     private String firstName;
-    @Getter
-    @Setter
     @Column(name = "last_name")
     private String lastName;
-    @Getter
-    @Setter
     @Column(name = "password", nullable = false)
     private String password;
-    @Getter
-    @Setter
     @Column(name = "userRole")
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserSkill> skills;
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Experience> experience = new ArrayList<>();
-    @Getter
-    @Setter
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Mentor mentor;
-    @Getter
-    @Setter
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private Applicant applicant;
-    @Getter
-    @Setter
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private ContactInformation contactInformation;
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> post;
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "sender")
     private List<Chat> outgoingChats;
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "receiver")
     private List<Chat> incomingChats;
-    @Getter
-    @Setter
-    @OneToMany
+    @OneToMany(mappedBy = "user1")
     private List<Connection> connectedTo;
-    @Getter
-    @Setter
-    @OneToMany
+    @OneToMany(mappedBy = "user2")
     private List<Connection> connections;
-
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 

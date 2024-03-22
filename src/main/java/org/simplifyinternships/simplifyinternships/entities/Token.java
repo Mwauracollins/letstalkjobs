@@ -1,8 +1,20 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.FetchType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.simplifyinternships.simplifyinternships.Utils.TokenType;
 import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
 
@@ -10,6 +22,8 @@ import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUse
 @Entity
 @Table(name = "token")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

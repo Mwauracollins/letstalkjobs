@@ -1,39 +1,43 @@
 package org.simplifyinternships.simplifyinternships.entities;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.CascadeType;
+import lombok.Data;
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.simplifyinternships.simplifyinternships.entities.userentities.BaseUser;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
 @Entity
 @Table(name = "chat")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+//@Document
 public class Chat {
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "chat_id")
     private Integer chatId;
-    @Getter
-    @Setter
     @Column(name = "message")
     private String message;
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "sender_user_id")
     private BaseUser sender;
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "receiver_user_id")
     private BaseUser receiver;
-    @Getter
-    @Setter
     @OneToOne(mappedBy = "chat", cascade = CascadeType.ALL)
     private Notification chatMeta;
 
-
-    public Chat() {
-    }
 }
