@@ -42,6 +42,7 @@ public class AuthenticationService {
 
         ContactInformation contactInformation = new ContactInformation();
         contactInformation.setEmail(user.getEmail());
+        contactInformation.setPhoneNumber(request.getPhoneNumber());
         contactInformation.setUser(user);
 
         user.setContactInformation(contactInformation);
@@ -82,7 +83,7 @@ public class AuthenticationService {
         tokenRepository.save(token);
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(@NotNull AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -102,7 +103,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    private void revokeAllUserTokens(BaseUser user) {
+    private void revokeAllUserTokens(@NotNull BaseUser user) {
         var validUserTokens = tokenRepository.findAllValidTokensByUser(user.getUserId());
         if (validUserTokens.isEmpty())
             return;
@@ -113,7 +114,7 @@ public class AuthenticationService {
         tokenRepository.saveAll(validUserTokens);
     }
     public void refreshToKen(
-            HttpServletRequest request,
+            @NotNull HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
