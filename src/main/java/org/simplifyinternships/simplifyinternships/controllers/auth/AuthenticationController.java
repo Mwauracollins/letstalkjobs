@@ -55,7 +55,7 @@ public class AuthenticationController {
     @ResponseStatus(HttpStatus.FOUND) //HTTP 302 FOUND STATUS CODE
     public String redirectHome(RedirectAttributes attributes) {
         attributes.addFlashAttribute("message","Redirected to homepage");
-        return "redirect:/";
+        return "redirect:/auth/homepage";
     }
 
 }
