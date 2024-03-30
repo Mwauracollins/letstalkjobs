@@ -36,6 +36,9 @@ public class Chat {
     @ManyToOne
     @JoinColumn(name = "receiver_user_id")
     private BaseUser receiver;
+    @ManyToOne
+    @JoinColumn(name = "conversation_id")
+    private Conversation conversation;
     @OneToOne(mappedBy = "chat", cascade = CascadeType.ALL)
     private Notification chatMeta;
 
