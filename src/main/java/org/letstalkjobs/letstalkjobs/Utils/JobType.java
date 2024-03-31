@@ -20,7 +20,7 @@ public enum JobType {
     INTERNSHIP{
         @Override
         public String toString() {
-            return "Attachment";
+            return "Internship";
         }
     };
     public abstract String toString();

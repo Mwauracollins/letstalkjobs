@@ -39,6 +39,8 @@ public class JobOpportunity {
     private Integer jobId;
     @Column(name = "name")
     private String name;
+    @Column(name = "description")
+    private String description;
     @Column(name = "date_posted")
     private Date datePosted;
     @Column(name = "start_date")
@@ -63,7 +65,10 @@ public class JobOpportunity {
     private Internship internship;
     @OneToMany(mappedBy = "jobOpportunity")
     private List<Application> application;
-
+    @Column(name = "expected_pay")
+    private String expectedPay;
+//    @ManyToMany(mappedBy = "jobOpportunity")
+//    private List<JobSkill> jobSkills;
 
 
 }

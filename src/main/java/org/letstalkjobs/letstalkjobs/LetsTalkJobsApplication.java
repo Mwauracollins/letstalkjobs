@@ -3,6 +3,7 @@ package org.letstalkjobs.letstalkjobs;
 import org.letstalkjobs.letstalkjobs.Utils.UserRole;
 import org.letstalkjobs.letstalkjobs.auth.AuthenticationService;
 import org.letstalkjobs.letstalkjobs.auth.RegisterRequest;
+import org.letstalkjobs.letstalkjobs.config.JwtService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,7 @@ public class LetsTalkJobsApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AuthenticationService service){
+    public CommandLineRunner commandLineRunner(AuthenticationService service, JwtService jwtService){
         return args -> {
             var admin = RegisterRequest.builder()
                     .firstName("Admin")
@@ -35,7 +36,8 @@ public class LetsTalkJobsApplication {
                     .password("1234qw")
                     .userRole(UserRole.MANAGER)
                     .build();
-            System.out.println("Manager token: " + service.register(manager).getAccessToken());
+            var username = jwtService.extractUsername(service.register(manager).getAccessToken());
+            System.out.println("Manager username: " + username);
         };
     }
 }

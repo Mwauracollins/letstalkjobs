@@ -28,7 +28,7 @@ public class Conversation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer conversationId;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conversation")
     private List<Chat> chats;
     @ManyToOne
     private BaseUser sender;

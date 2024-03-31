@@ -18,6 +18,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.letstalkjobs.letstalkjobs.Utils.UserRole;
 import org.letstalkjobs.letstalkjobs.entities.*;
+import org.letstalkjobs.letstalkjobs.entities.postentities.Comment;
 import org.letstalkjobs.letstalkjobs.entities.postentities.Post;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -70,6 +71,8 @@ public class BaseUser implements UserDetails {
     private List<Connection> connections;
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
 
 
     @Override
