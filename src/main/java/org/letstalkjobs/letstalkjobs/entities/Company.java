@@ -36,5 +36,7 @@ public class Company {
     private ContactInformation contactInformation;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<JobOpportunity> jobOpportunity;
+    @Column(name = "location")
+    private String location;
 
 }
