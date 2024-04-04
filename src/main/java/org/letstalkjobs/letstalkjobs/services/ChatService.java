@@ -1,7 +1,9 @@
 package org.letstalkjobs.letstalkjobs.services;
 
 import lombok.RequiredArgsConstructor;
+import org.letstalkjobs.letstalkjobs.dto.requests.ChatRequest;
 import org.letstalkjobs.letstalkjobs.dto.responses.ChatResponse;
+import org.letstalkjobs.letstalkjobs.entities.Chat;
 import org.letstalkjobs.letstalkjobs.entities.userentities.BaseUser;
 import org.letstalkjobs.letstalkjobs.repositories.ChatRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,14 +35,15 @@ public class ChatService {
                 .toList();
 
     }
-//    public ChatResponse save(
-//            ChatRequest request,
-//            Principal connectedUser
-//    ) {
-//        var user = (BaseUser) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
-//
-//        var chat = conversationService.getConversation(request.getSender(), request.getRecipient(), true)
-//                .orElseThrow();
-//        chatRepository.save(chat)
-//    }
+
+    public ChatResponse sendMessage(ChatRequest request) {
+        Chat chat = Chat.builder()
+                .message(request.getMessage())
+                .build();
+        chatRepository.save(chat);
+        return ChatResponse.builder()
+                .message(chat.getMessage())
+                .build();
+
+    }
 }

@@ -62,8 +62,8 @@ public class SecurityConfig {
                                 .requestMatchers(POST,"/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
                                 .requestMatchers(PUT, "/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
                                 .requestMatchers(DELETE, "/management/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
-//                        .anyRequest()
-//                        .authenticated()
+                        .anyRequest()
+                        .authenticated()
                 )
                 .sessionManagement(
                         session -> session.sessionCreationPolicy(
@@ -79,15 +79,15 @@ public class SecurityConfig {
                                 .addLogoutHandler(logoutHandler)
                                 .logoutSuccessHandler(((request, response, authentication) -> SecurityContextHolder.clearContext()))
                 )
-//                .formLogin(
-//                        login -> login
-////                                .loginPage("/auth/login")
-//                                .usernameParameter("email")
-//                                .passwordParameter("password")
-//                                .successHandler(loginSuccessHandler)
-//                                .failureUrl("/auth/login?error=true")
-//                                .permitAll()
-//                )
+                .formLogin(
+                        login -> login
+//                                .loginPage("/auth/login")
+                                .usernameParameter("email")
+                                .passwordParameter("password")
+                                .successHandler(loginSuccessHandler)
+                                .failureUrl("/auth/login?error=true")
+                                .permitAll()
+                )
                 ;
         return httpSecurity.build();
     }

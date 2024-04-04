@@ -2,6 +2,7 @@ package org.letstalkjobs.letstalkjobs.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Inheritance;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import org.letstalkjobs.letstalkjobs.entities.userentities.BaseUser;
 
 @Entity
 @Table(name = "user_skill")
+@Inheritance
 public class UserSkill extends Skill{
     @Getter
     @Setter
@@ -20,7 +22,7 @@ public class UserSkill extends Skill{
     public UserSkill() {
     }
     public UserSkill(String skillName, BaseUser user) {
-        super(skillName);
+
         this.user = user;
     }
 }

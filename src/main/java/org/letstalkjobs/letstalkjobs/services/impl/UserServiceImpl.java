@@ -8,7 +8,9 @@ import org.letstalkjobs.letstalkjobs.dto.requests.*;
 import org.letstalkjobs.letstalkjobs.dto.responses.*;
 import org.letstalkjobs.letstalkjobs.entities.Education;
 import org.letstalkjobs.letstalkjobs.entities.Experience;
+import org.letstalkjobs.letstalkjobs.entities.Resume;
 import org.letstalkjobs.letstalkjobs.entities.UserSkill;
+import org.letstalkjobs.letstalkjobs.entities.userentities.Applicant;
 import org.letstalkjobs.letstalkjobs.entities.userentities.BaseUser;
 import org.letstalkjobs.letstalkjobs.repositories.*;
 import org.letstalkjobs.letstalkjobs.services.UserService;
@@ -33,6 +35,7 @@ public class UserServiceImpl implements UserService {
     private final UserSkillRepository userSkillRepository;
     private final ContactInformationRepository contactInformationRepository;
     private final ApplicationRepository applicationRepository;
+    private final  ResumeRepository resumeRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -266,7 +269,19 @@ public class UserServiceImpl implements UserService {
         return (UserResponse) userRepository.findByEmail(user.getEmail())
                 .stream()
                 .map(logged_user -> UserResponse.builder()
-//                        .userRole(logged_user.getUserRole())
+                        .userRole(logged_user.getUserRole())
                         .build());
+    }
+    public Resume getUserResume(
+            Principal connectedUser
+    ) {
+        var user = (BaseUser) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
+        Applicant applicant = user.getApplicant();
+
+        if (applicant != null){
+            return resumeRepository.findByApplicant(applicant);
+        }else {
+            return null;
+        }
     }
 }

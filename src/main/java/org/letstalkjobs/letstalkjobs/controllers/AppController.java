@@ -33,12 +33,17 @@ public class AppController {
         return "index";
     }
     @GetMapping(value = "/about", name = "about")
-    public String about(){
+    public String about(
+            Model model
+    ){
         return "about";
     }
     @GetMapping(value = "/contact", name = "contact")
-    public String contact(){
-        return "contact";
+    public String contact(
+            Model model
+    ){
+
+        return "contact_page";
     }
 
 }

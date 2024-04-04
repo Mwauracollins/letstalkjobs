@@ -1,14 +1,26 @@
 package org.letstalkjobs.letstalkjobs.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Setter
 @Getter
-@Entity
-@Table(name = "skills")
-//@MappedSuperclass
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+//@Entity
+//@Table(name = "skills")
+@MappedSuperclass
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,10 +28,8 @@ public class Skill {
     private Integer skillId;
     @Column(name = "skill_name")
     private String skillName;
-
-    public Skill() {
-    }
-    public Skill(String skillName) {
+    public Skill(String skillName){
         this.skillName = skillName;
     }
+
 }

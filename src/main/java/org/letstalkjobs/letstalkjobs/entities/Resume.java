@@ -8,10 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.JoinColumn;
+import lombok.Getter;
+import lombok.Setter;
 import org.letstalkjobs.letstalkjobs.entities.userentities.Applicant;
 
 import java.io.File;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "resume")
 public class Resume {

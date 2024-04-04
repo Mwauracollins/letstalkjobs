@@ -40,6 +40,6 @@ public class Chat {
     @JoinColumn(name = "conversation_id")
     private Conversation conversation;
     @OneToOne(mappedBy = "chat", cascade = CascadeType.ALL)
-    private Notification chatMeta;
+    private ChatMeta chatMeta;
 
 }

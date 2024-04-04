@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -67,8 +68,8 @@ public class JobOpportunity {
     private List<Application> application;
     @Column(name = "expected_pay")
     private String expectedPay;
-//    @ManyToMany(mappedBy = "jobOpportunity")
-//    private List<JobSkill> jobSkills;
+    @OneToMany(mappedBy = "jobOpportunity")
+    private List<JobSkill> jobSkills;
 
 
 }

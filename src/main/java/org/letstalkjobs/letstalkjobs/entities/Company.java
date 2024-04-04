@@ -38,5 +38,7 @@ public class Company {
     private List<JobOpportunity> jobOpportunity;
     @Column(name = "location")
     private String location;
+    @OneToOne(mappedBy = "company")
+    private Images companyLogo;
 
 }

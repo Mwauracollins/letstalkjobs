@@ -10,15 +10,18 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface JobOpportunityRepository extends JpaRepository<JobOpportunity, Integer> {
-    List<JobOpportunity> findByJobType(JobType jobType);
-    List<JobOpportunity> findByCategory(JobCategory category);
-    List<JobOpportunity> findByCompany(Company company);
-    List<JobOpportunity> findByPosition(Position position);
-    List<JobOpportunity> findByName(String name);
-    List<JobOpportunity> findByStartDate(Date startDate);
+    Optional<JobOpportunity> findByJobType(JobType jobType);
+    Optional<JobOpportunity> findByCategory(JobCategory category);
+    Optional<JobOpportunity> findByCompany(Company company);
+    Optional<JobOpportunity> findByPosition(Position position);
+    Optional<JobOpportunity> findByName(String name);
+    Optional<JobOpportunity> findByStartDate(Date startDate);
+    Optional<JobOpportunity> findByDatePosted(Date datePosted);
+
     @Override
     List<JobOpportunity> findAll();
 }
