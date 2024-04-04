@@ -44,7 +44,7 @@
 					<div class="col-lg-3 col-md-2">
 						<!-- Logo -->
 						<div class="logo">
-							<a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+							<a th:href="@{'/home'}"><img src="../img/logo/logo.png" alt=""></a>
 						</div>
 					</div>
 					<div class="col-lg-9 col-md-9">
@@ -53,25 +53,17 @@
 							<div class="main-menu">
 								<nav class="d-none d-lg-block">
 									<ul id="navigation">
-										<li><a href="index.html">Home</a></li>
-										<li><a href="job_listing.html">Find a Jobs </a></li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="#">Page</a>
-											<ul class="submenu">
-												<li><a href="blog.html">Blog</a></li>
-												<li><a href="single-blog.html">Blog Details</a></li>
-												<li><a href="elements.html">Elements</a></li>
-												<li><a href="job_details.html">job Details</a></li>
-											</ul>
-										</li>
-										<li><a href="contact.html">Contact</a></li>
+										<li><a th:href="@{'home'}">Home</a></li>
+										<li><a th:href="@{'/jobs'}">Find Jobs </a></li>
+										<li><a th:href="@{'/about'}">About</a></li>
+										<li><a th:href="@{'/contact'}">Contact</a></li>
 									</ul>
 								</nav>
 							</div>
 							<!-- Header-btn -->
 							<div class="header-btn d-none f-right d-lg-block">
-								<a href="#" class="btn head-btn1">Register</a>
-								<a href="#" class="btn head-btn2">Login</a>
+								<a th:href="@{'/auth/register'}" class="btn head-btn1">Register</a>
+								<a th:href="@{'/auth/login'}" class="btn head-btn2">Login</a>
 							</div>
 						</div>
 					</div>
@@ -96,7 +88,7 @@
 					<div class="row">
 						<div class="col-xl-6 col-lg-9 col-md-10">
 							<div class="hero__caption">
-								<h1>Find the most exciting startup jobs</h1>
+								<h1>Find the job oppornities in your local area</h1>
 							</div>
 						</div>
 					</div>
@@ -119,7 +111,7 @@
 									</div>
 								</div>
 								<div class="search-form">
-									<a href="#">Find job</a>
+									<a href="#">Find a job</a>
 								</div>
 							</form>
 						</div>
@@ -526,11 +518,10 @@
 							<h4>Contact Info</h4>
 							<ul>
 								<li>
-									<p>Address :Your address goes
-										here, your demo address.</p>
+									<p>Address : CHUKA, KENYA</p>
 								</li>
-								<li><a href="#">Phone : +8880 44338899</a></li>
-								<li><a href="#">Email : info@colorlib.com</a></li>
+								<li><a href="#">Phone : +0712345678</a></li>
+								<li><a href="#">Email : letstalkjobs@gmail.com</a></li>
 							</ul>
 						</div>
 
@@ -577,34 +568,6 @@
 					</div>
 				</div>
 			</div>
-			<!--  -->
-			<div class="row footer-wejed justify-content-between">
-				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-					<!-- logo -->
-					<div class="footer-logo mb-20">
-						<a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-					<div class="footer-title-bottom">
-						<span>5000+</span>
-						<p>Talented Hunter</p>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-					<div class="footer-title-bottom">
-						<span>451</span>
-						<p>Talented Hunter</p>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-					<!-- Footer Bottom title -->
-					<div class="footer-title-bottom">
-						<span>568</span>
-						<p>Talented Hunter</p>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<!-- footer-bottom area -->
@@ -614,9 +577,6 @@
 				<div class="row d-flex justify-content-between align-items-center">
 					<div class="col-xl-10 col-lg-10 ">
 						<div class="footer-copy-right">
-							<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 						</div>
 					</div>
 					<div class="col-xl-2 col-lg-2">
