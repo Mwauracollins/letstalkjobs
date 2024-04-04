@@ -18,7 +18,7 @@ This entity record the chat meta data like is it viewed.
 @Data
 @Entity
 @Table(name = "notification")
-public class Notification {
+public class ChatMeta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notification_id")
@@ -35,6 +35,6 @@ public class Notification {
 
 
 
-    public Notification() {
+    public ChatMeta() {
     }
 }
