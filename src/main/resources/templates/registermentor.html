@@ -4,6 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mentor Registration Portal</title>
+  <script src="/templates/js/registermentor.js"></script>
+  <link rel="stylesheet" href="/templates/static/css/registermentor.css">
+</head>
+<body>
+  <h1>Mentor Registration</h1>
+  <div id="regform">
+  <form action="" method="POST" id="formregistration">
+    <label for="first_name" class="labels">First Name:</label>
+    <input type="text" id="first_name" name="first_name" class="input" placeholder="first name" required> <br><br>
+
+    <label for="last_name" class="labels">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" class="input" placeholder="last name" required><br><br>
+
+    <label for="email" class="labels">Email:</label>
+    <input type="email" id="email" name="email" placeholder="johndoe@example.com" class="input" required><br><br>
+
+    <label for="password" class="labels">Password:</label>
+    <input type="password" id="password" name="password" class="input" placeholder="*****" required><br><br>
+
+    <label for="confirm_password" class="labels">Confirm Password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" class="input" placeholder="*****" required><br><br>
+
+    <button type="submit" onclick="registerMentor()" id="regbtn">Register</button>
+  <button type="button" onclick="homepage()" id="homebtn">Home</button>
+</form><br><br>
+</div>
+=======
   <script src="/js/registermentor.js"></script>
 </head>
 <body>
