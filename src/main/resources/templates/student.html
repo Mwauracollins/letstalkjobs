@@ -31,5 +31,21 @@
   <footer>
     <p>&copy; 2024 University Career Portal</p>
   </footer>
+  <script>
+    fetch('/user/', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+      }
+    })
+            .then(response => response.json())
+            .then(data => {
+              // Handle successful response
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+
+  </script>
 </body>
 </html>
