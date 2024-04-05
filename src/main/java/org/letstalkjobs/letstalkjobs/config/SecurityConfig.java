@@ -81,7 +81,6 @@ public class SecurityConfig {
                 )
                 .formLogin(
                         login -> login
-//                                .loginPage("/auth/login")
                                 .usernameParameter("email")
                                 .passwordParameter("password")
                                 .successHandler(loginSuccessHandler)

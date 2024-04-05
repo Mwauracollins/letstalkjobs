@@ -10,7 +10,6 @@ import org.letstalkjobs.letstalkjobs.entities.jobentities.JobCategory;
 import org.letstalkjobs.letstalkjobs.entities.jobentities.Position;
 
 import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

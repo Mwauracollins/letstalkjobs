@@ -1,8 +1,8 @@
 package org.letstalkjobs.letstalkjobs.controllers.auth;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Cookie;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.letstalkjobs.letstalkjobs.auth.*;
@@ -10,11 +10,10 @@ import org.letstalkjobs.letstalkjobs.config.JwtService;
 import org.letstalkjobs.letstalkjobs.config.LogoutService;
 import org.letstalkjobs.letstalkjobs.entities.userentities.BaseUser;
 import org.letstalkjobs.letstalkjobs.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,9 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.security.Principal;
 
-/*
-TODO:Add logout
- */
 @Controller
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -43,22 +39,26 @@ public class AuthenticationController {
             HttpServletRequest request,
             Principal connectedUser){
         model.addAttribute("message", "Welcome to the register page");
-//        if (isAuthenticated(request, connectedUser)){
-//
-//            return "redirect:/home";
-//        }
+        if (isAuthenticated(request, connectedUser)){
+
+            return "redirect:/home";
+        }
         return "register";
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<RegisterResponse> register(
+    public ResponseEntity<?> register(
             @RequestBody RegisterRequest request,
             Model model,
             BindingResult bindingResult
     ){
-        RegisterResponse registerResponse = authenticationService.register(request);
+        try{
+            RegisterResponse registerResponse = authenticationService.register(request);
+            return  ResponseEntity.ok(registerResponse);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to register");
+        }
 
-        return  ResponseEntity.ok(registerResponse);
     }
     @GetMapping(value = "/login")
     public String showLoginPage(
@@ -66,7 +66,7 @@ public class AuthenticationController {
             HttpServletRequest request,
             Principal connectedUser
     ){
-        model.addAttribute("message", "Welcome to the register page");
+        model.addAttribute("message", "Welcome to the login page");
         if (isAuthenticated(request, connectedUser)){
 
             return "redirect:/home";
@@ -74,23 +74,28 @@ public class AuthenticationController {
         return "login";
     }
 
-    @PostMapping(value = "/login")
+
     public ResponseEntity<?> authenticate(
             @RequestBody AuthenticationRequest request,
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             Principal connectedUser
     ){
-        if (isAuthenticated(httpServletRequest, connectedUser)){
-            return ResponseEntity.ok("redirect:/home");
+        try {
+            if (!isAuthenticated(httpServletRequest, connectedUser)) {
+                return ResponseEntity.ok("redirect:/home");
+            }
+            AuthenticationResponse authenticationResponse = authenticationService.authenticate(request);
+            httpServletResponse.addCookie(createCookie("access_token", authenticationResponse.getAccessToken()));
+            httpServletResponse.addCookie(createCookie("refresh_token", authenticationResponse.getRefreshToken()));
+
+            var email = jwtService.extractUsername(authenticationResponse.getAccessToken());
+
+            return ResponseEntity.ok(authenticationResponse);
         }
-        AuthenticationResponse authenticationResponse = authenticationService.authenticate(request);
-        httpServletResponse.addCookie(createCookie("access_token", authenticationResponse.getAccessToken()));
-        httpServletResponse.addCookie(createCookie("refresh_token", authenticationResponse.getRefreshToken()));
-
-        var email = jwtService.extractUsername(authenticationResponse.getAccessToken());
-
-        return ResponseEntity.ok(authenticationResponse);
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to login");
+        }
     }
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logout(
