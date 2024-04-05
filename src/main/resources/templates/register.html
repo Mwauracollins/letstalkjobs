@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel="stylesheet" th:href="@{../css/register.css}">
 </head>
 <body>
 <h2 th:text="${message}"></h2>
@@ -13,7 +14,7 @@
             <div class="col-12">
                 <div class="register-form-content">
                     <div class="register-form">
-                        <span class="login-account">Already have an account? <a href="#/">Log in instead!</a></span>
+                        <span class="login-account">Already have an account? <a th:href="@{'/auth/login'}">Log in instead!</a></span>
                         <form action="auth/register" method="post" id="registerForm">
                             <div class="form-group row">
                                 <label class="col-md-3" for="userType">User Type</label>
