@@ -32,12 +32,13 @@
                             </div>
                             <div class="form-group row mb-15">
                                 <div class="col-12 text-center">
-                                    <button th:href="@{'/home'}" class="btn-signin" type="submit">Sign in</button>
+                                    <a class="btn-forgot" href="#/">Forgot your password?</a>
+                                    <button class="btn-signin" type="submit">Sign in</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <a class='btn-create-account' th:href="@{'/auth/register'}">No account? Create one here</a>
+                    <a class='btn-create-account' href=''>No account? Create one here</a>
                 </div>
             </div>
         </div>
@@ -71,8 +72,7 @@
                     localStorage.setItem('refresh_token', data.refresh_token);
 
                     console.log(data.refresh_token);
-                }
-                else {
+                }else {
                     alert("Login failed")
                 }
             })
