@@ -146,7 +146,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{userId}/resume")
+    @PostMapping("/{userId}/upload-resume")
     public ResponseEntity<?> uploadResume(
             @PathVariable("userId") Integer userId,
             @RequestParam("file")MultipartFile file,
