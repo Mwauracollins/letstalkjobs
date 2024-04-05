@@ -19,7 +19,6 @@ public class JobCategoryService {
         return jobCategoryRepository.findAll();
     }
     public JobCategory addJobCategory(JobCategory jobCategory){
-        //TODO: Logic to ensure the instance is unique
         return jobCategoryRepository.save(jobCategory);
     }
 }

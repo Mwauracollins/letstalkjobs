@@ -19,8 +19,6 @@ public class PositionService {
         return positionRepository.findAll();
     }
     public Position addPosition(Position position){
-        //TODO: Additional business logic like if the position is already there
-//              it should not add.
         return positionRepository.save(position);
     }
 }

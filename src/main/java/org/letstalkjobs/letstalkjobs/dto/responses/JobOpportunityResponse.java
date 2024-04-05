@@ -22,7 +22,6 @@ public class JobOpportunityResponse {
     private String name;
     private String description;
     private Company company;
-//    TODO: Use a dto for the fields
     private Date startDate;
     private Date endDate;
     private Position position;

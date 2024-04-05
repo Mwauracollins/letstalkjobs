@@ -18,7 +18,6 @@ import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-//TODO: Add more fields to the builder map
 @Service
 @RequiredArgsConstructor
 public class JobOpportunityService {

@@ -40,7 +40,7 @@ public class Experience {
     @Column(name = "is_current_role")
     private Boolean isCurrentRole;
 
-    @ManyToOne()//TODO: Add cascade and fetch type
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private BaseUser user;
 

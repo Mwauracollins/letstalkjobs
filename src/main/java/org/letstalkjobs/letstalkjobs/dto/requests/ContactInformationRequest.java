@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContactInformationRequest {
-    //TODO: Add more fields
     private String email;
     private String phoneNumber;
     private String website;
